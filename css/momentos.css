@@ -1,0 +1,21 @@
+.container{
+    margin-left: 30px;
+    margin-top: 40px;
+}
+.titulo1{
+    font-size: 60px;
+    color:#365486;
+    text-align: center;
+}
+.imagenes2{
+    margin-right: 350px;
+    margin-left: 350px;
+    margin-top: 50px;
+    border-radius: 10px;
+    border: black;
+}
+.title2{
+    
+    text-align: center;
+    color: #DCF2F1;
+}
