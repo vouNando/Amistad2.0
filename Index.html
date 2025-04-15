@@ -1,114 +1,344 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Favicon -->
     <link rel="icon" href="imagenes/calendario.png" type="image/x-icon">
-    <!-- Estilos internos -->
-    <style>
-      header {
-        background-color: black;
-      }
-      body {
-        font-family: cursive;
-        background-color: black;
-      }
-      .titulo1 {
-        color: #EA1179;
-        text-align: center;
-        margin: 20px 0;
-      }
-    </style>
-    <!-- Hoja de estilos externa -->
-    <link rel="stylesheet" href="css/indexDiseño.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
     <title>Nuestra Amistad</title>
+    <style>
+        :root {
+            --color-primario: #EA1179;
+            --color-secundario: #7FC7D9;
+            --color-fondo: #0F0F0F;
+            --color-texto: #F1F1F1;
+            --color-destacado: #FFD700;
+        }
+        
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            overflow-x: hidden;
+        }
+        
+        .titulo-principal {
+            font-family: 'Pacifico', cursive;
+            color: var(--color-primario);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin: 20px 0;
+            font-size: calc(1.5rem + 2vw);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar {
+            background-color: var(--color-primario) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .navbar-brand {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.5rem;
+            color: white !important;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.85) !important;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+            transform: translateY(-2px);
+        }
+        
+        .carousel {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            margin-bottom: 30px;
+        }
+        
+        .carousel-item img {
+            object-fit: cover;
+            height: 60vh;
+            width: 100%;
+        }
+        
+        .seccion-texto {
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-left: 5px solid var(--color-primario);
+        }
+        
+        .seccion-texto p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .frase-destacada {
+            color: var(--color-destacado);
+            font-style: italic;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .imagen-corazon {
+            display: block;
+            margin: 20px auto;
+            animation: latido 1.5s infinite;
+        }
+        
+        @keyframes latido {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .btn-momentos {
+            background-color: var(--color-secundario);
+            border: none;
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 20px auto;
+            width: fit-content;
+        }
+        
+        .btn-momentos:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        footer {
+            background-color: #111;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+            text-align: center;
+        }
+        
+        .social-icons {
+            margin-top: 15px;
+        }
+        
+        .social-icons a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: var(--color-primario);
+            transform: translateY(-3px);
+        }
+        
+        /* Efectos hover para imágenes */
+        .img-hover-effect {
+            transition: all 0.3s ease;
+            border-radius: 10px;
+        }
+        
+        .img-hover-effect:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(234, 17, 121, 0.3);
+        }
+        
+        /* Responsividad */
+        @media (max-width: 992px) {
+            .carousel-item img {
+                height: 50vh;
+            }
+            
+            .seccion-texto {
+                margin: 20px 10px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .carousel-item img {
+                height: 40vh;
+            }
+            
+            .titulo-principal {
+                font-size: 2rem;
+            }
+            
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .carousel-item img {
+                height: 30vh;
+            }
+            
+            .seccion-texto {
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg" style="background-color: #EA1179;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Nuestra Amistad</a>
-            <img src="imagenes/nin3.png" alt="Logo" width="50px" height="50px">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
-                aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Navbar Mejorado -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="imagenes/nin3.png" alt="Logo" width="50" height="50" class="me-2">
+                Nuestra Amistad
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarColor02">
-                <ul class="navbar-nav me-auto">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="momentos.html">Momentos</a>
+                        <a class="nav-link active" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="momentos.html">Momentos</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-sm-2" type="search" placeholder="Search">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                <form class="d-flex ms-lg-3 mt-2 mt-lg-0">
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Buscar..." aria-label="Search">
+                        <button class="btn btn-outline-light" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
     </nav>
 
-    <h2 class="titulo1">Feliz día del Amor y la Amistad</h2>
-    <header>
-        <div class="imagenes2">
-          <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <!-- Carrusel Mejorado -->
+    <div class="container mt-4">
+        <h1 class="titulo-principal text-center">Feliz día del Amor y la Amistad</h1>
+        
+        <div id="carouselAmigos" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselAmigos" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#carouselAmigos" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#carouselAmigos" data-bs-slide-to="2"></button>
+                <button type="button" data-bs-target="#carouselAmigos" data-bs-slide-to="3"></button>
+            </div>
             <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="imagenes/image1.jpeg" class="d-block w-100" alt="Amigos" height="500">
-              </div>
-              <div class="carousel-item">
-                <img src="imagenes/image2.jpeg" class="d-block w-100" alt="Amigos" height="500">
-              </div>
-              <div class="carousel-item">
-                <img src="imagenes/image4.jpeg" class="d-block w-100" alt="Amigos" height="500">
-              </div>
-              <div class="carousel-item">
-                <img src="imagenes/image3.jpeg" class="d-block w-100" alt="Amigos" height="500">
-              </div>
+                <div class="carousel-item active">
+                    <img src="imagenes/image1.jpeg" class="d-block w-100" alt="Amigos">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Amigos Inseparables</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="imagenes/image2.jpeg" class="d-block w-100" alt="Amigos">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Momentos Especiales</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="imagenes/image4.jpeg" class="d-block w-100" alt="Amigos">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Risas Compartidas</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="imagenes/image3.jpeg" class="d-block w-100" alt="Amigos">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Recuerdos Inolvidables</h5>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-    </header>
-
-    <div class="titulo2">
-        <h2 class="titulo1">Comprar Ahora</h2>
-    </div>
-
-    <div class="compra">
-        <div class="row">
-          <div class="col-md-4">
-            <img src="imagenes/vide1.gif" alt="Regalo de amistad" width="350" height="450">
-          </div>
-          <div class="col-lg-4">
-            <p>TQM</p>
-            <div class="imagen1">
-                <img src="imagenes/corazon.png" alt="Corazón" width="100" height="100">
-            </div>
-            <p>"Amigos por siempre"</p>
-            <p>Amigos por siempre, unidos en la risa y en la pena. En cada momento, una mano extendida, una palabra buena.</p>
-            <p>"El valor de la amistad"</p>
-            <p>La amistad es un tesoro invaluable, un rayo de luz en los días oscuros. En la tormenta, un refugio seguro, en la alegría, un compañero inseparable.</p>
-            <p>"La verdadera amistad es aquella que te acepta tal como eres, pero que te ayuda a ser mejor."</p>
-            <hr>
-            <div class="button1">
-                <a href="momentos.html" class="btn btn-primary">Momentos</a>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <img src="imagenes/vide2.gif" alt="Amistad" width="350" height="470">
-          </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselAmigos" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselAmigos" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous">
+    <!-- Sección de Contenido Mejorada -->
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-4 mb-4 mb-lg-0">
+                <img src="imagenes/vide1.gif" alt="Regalo de amistad" class="img-fluid img-hover-effect">
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="seccion-texto">
+                    <h3 class="text-center mb-4" style="color: var(--color-primario);">TQM</h3>
+                    <img src="imagenes/corazon.png" alt="Corazón" class="imagen-corazon" width="100">
+                    
+                    <p class="frase-destacada">"Amigos por siempre"</p>
+                    <p>Amigos por siempre, unidos en la risa y en la pena. En cada momento, una mano extendida, una palabra buena.</p>
+                    
+                    <p class="frase-destacada mt-4">"El valor de la amistad"</p>
+                    <p>La amistad es un tesoro invaluable, un rayo de luz en los días oscuros. En la tormenta, un refugio seguro, en la alegría, un compañero inseparable.</p>
+                    
+                    <p class="frase-destacada mt-4">"La verdadera amistad"</p>
+                    <p>La verdadera amistad es aquella que te acepta tal como eres, pero que te ayuda a ser mejor.</p>
+                    
+                    <a href="momentos.html" class="btn btn-momentos">
+                        <i class="fas fa-images me-2"></i>Ver Momentos
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mt-4 mt-lg-0">
+                <img src="imagenes/vide2.gif" alt="Amistad" class="img-fluid img-hover-effect">
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Mejorado -->
+    <footer class="mt-5">
+        <div class="container">
+            <p class="mb-0">© 2023 Nuestra Amistad - Todos los derechos reservados</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Efecto de escritura para el título
+        document.addEventListener('DOMContentLoaded', function() {
+            const titulo = document.querySelector('.titulo-principal');
+            if (titulo) {
+                titulo.style.opacity = '0';
+                setTimeout(() => {
+                    titulo.style.transition = 'opacity 1s ease';
+                    titulo.style.opacity = '1';
+                }, 500);
+            }
+            
+            // Activar tooltips
+            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
     </script>
 </body>
 </html>
